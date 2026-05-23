@@ -275,7 +275,7 @@ select {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: hsl( var(--clr-dark) / 0.95);
+  background: hsl( var(--clr-white) / 0.05);
   backdrop-filter: blur(1.5rem);
 }
 
@@ -314,6 +314,7 @@ select {
     flex-direction: column;
     transform: translateX(100%);
     transition: transform 500ms ease-in-out;
+    background: hsl( var(--clr-dark) / 0.95);
   }
   
   .primary-navigation[data-visible="true"] {
@@ -363,6 +364,10 @@ select {
 }
 
 @media (min-width: 45em) {
+  .primary-header {
+    margin-top: 2rem;
+  }
+
   .primary-header::after {
     content: '';
     display: block;
@@ -372,6 +377,7 @@ select {
     margin-right: -2.5rem;
     background: hsl( var(--clr-white) / .25);
     order: 1;
+    z-index: 2;
   }
   
   nav {
