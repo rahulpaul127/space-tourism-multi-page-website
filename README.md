@@ -43,16 +43,32 @@ Users should be able to:
 - CSS custom properties (design tokens)
 - CSS Flexbox & CSS Grid
 - Mobile-first responsive workflow
-- Vanilla JavaScript for interactivity
-- Single Page Application (SPA) architecture using vanilla JS
+- Vanilla JavaScript for tab interactivity
+- Multi-page architecture (`index.html`, `destination.html`, `crew.html`, `technology.html`)
+
+### Project structure
+
+```
+index.html          → Home (static HTML)
+destination.html    → Destination tabs + planet animation
+crew.html           → Crew tabs
+technology.html     → Technology tabs
+js/nav.js           → Mobile menu (all pages)
+js/destination.js   → Destination tabs from data.json
+js/crew.js          → Crew tabs from data.json
+js/technology.js    → Technology tabs from data.json
+data.json           → Content for dynamic sections
+```
 
 ### What I learned
 
 During this project, I gained significant experience in several key areas:
 
-- **Single Page Application (SPA) Architecture:** I implemented a custom routing system using vanilla JavaScript that dynamically updates the DOM based on the selected navigation link. This provides a seamless transition between pages without needing full page reloads.
+- **Multi-page architecture:** Each main section has its own HTML file with real URLs, while JavaScript only handles tab switching within Destination, Crew, and Technology.
 
-- **Asynchronous Data Fetching:** I learned how to fetch and parse data from a local `data.json` file asynchronously using `async/await` and the Fetch API, which was then used to populate the content for the Destination, Crew, and Technology sections dynamically.
+- **Asynchronous Data Fetching:** I fetch and parse `data.json` with `async/await` on the pages that need dynamic tab content.
+
+- **CSS animations:** Destination planets use a slow 2D `rotate` spin (`planet-rotate`, 90s loop) with `prefers-reduced-motion` respected via the global reduced-motion rules.
 
 - **Advanced CSS Grid Layouts:** I utilized CSS Grid extensively, specifically relying on `grid-template-areas` to restructure complex layouts from mobile to desktop screens cleanly.
 
@@ -73,9 +89,8 @@ During this project, I gained significant experience in several key areas:
 
 ### Continued development
 
-- **Animations and Transitions:** I'd like to add smoother page transitions between the different sections (Home, Destination, Crew, Technology) when navigating.
-- **Accessibility Improvements:** I want to continue refining the keyboard navigation, specifically managing focus when switching between different tabs and routes.
-- **Preloading Images:** Exploring ways to preload images for the destination and crew tabs to prevent any slight flickering when users click a tab for the first time.
+- **Accessibility Improvements:** Refine keyboard navigation and focus management when switching tabs.
+- **Preloading Images:** Preload destination and crew images to reduce flicker on first tab click.
 
 ## Author
 

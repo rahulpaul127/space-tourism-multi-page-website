@@ -229,15 +229,33 @@ select {
 /* ------------------- */
 
 .large-button {
-  font-size: 2rem;
+  --btn-size: 9.375rem; /* 150px — style guide */
+  font-size: 1.125rem;
   position: relative;
   z-index: 1;
-  display: inline-grid;
+  display: grid;
   place-items: center;
-  padding: 0 2em;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  min-width: var(--btn-size);
+  min-height: var(--btn-size);
+  padding: 0;
   border-radius: 50%;
-  aspect-ratio: 1;
   text-decoration: none;
+}
+
+@media (min-width: 35em) {
+  .large-button {
+    --btn-size: 15.125rem; /* 242px */
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 45em) {
+  .large-button {
+    --btn-size: 17rem; /* 272px */
+    font-size: 2rem;
+  }
 }
 
 .large-button::after {
@@ -533,24 +551,53 @@ body.technology {
 
 /* Home */
 
+body.home main {
+  display: grid;
+  align-content: center;
+}
+
 .grid-container--home {
-  padding-bottom: max(6rem, 20vh);
+  width: 100%;
+  padding-bottom: max(4rem, 15vh);
   align-items: end;
+  gap: 3.5rem;
 }
 
 .grid-container--home > *:first-child {
   padding-top: 6rem;
 }
 
+.grid-container--home > *:last-child {
+  display: flex;
+  justify-content: center;
+}
+
 @media (min-width: 45em) {
+  body.home main {
+    align-content: stretch;
+  }
+
+  .grid-container--home {
+    min-height: calc(100vh - 6rem);
+    padding-bottom: 0;
+    align-items: center;
+    align-content: center;
+    gap: 0;
+  }
+
   .grid-container--home > *:first-child {
     justify-self: start;
-    padding-top: 10rem;
+    align-self: center;
+    padding-top: 0;
     grid-column: 2;
   }
+
   .grid-container--home > *:last-child {
     justify-self: end;
+    align-self: center;
     grid-column: 3;
+    justify-content: flex-end;
+    padding-inline-end: clamp(0rem, 3vw, 5rem);
   }
 }
 
@@ -569,11 +616,59 @@ body.technology {
   grid-area: title;
 }
 
+.grid-container--destination > .planet-visual,
 .grid-container--destination > picture,
 .grid-container--destination > img {
   grid-area: image;
   max-width: 60%;
   margin-inline: auto;
+}
+
+/* Planet spin animation — flat 2D rotation */
+.planet-visual {
+  position: relative;
+  aspect-ratio: 1;
+  width: min(100%, 20rem);
+  margin-inline: auto;
+}
+
+.planet-spin {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: planet-rotate 90s linear infinite;
+  will-change: transform;
+}
+
+.planet-spin img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 3rem hsl( var(--clr-white) / 0.08);
+}
+
+@keyframes planet-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.destination-info--fade {
+  animation: destination-fade-in 600ms ease-out;
+}
+
+@keyframes destination-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .grid-container--destination > .tab-list {
@@ -615,9 +710,15 @@ body.technology {
       '. image tabs .'
       '. image content .';
   }
+  .grid-container--destination > .planet-visual,
   .grid-container--destination > picture,
   .grid-container--destination > img {
     max-width: 90%;
+  }
+
+  .planet-visual {
+    width: 100%;
+    max-width: 28rem;
   }
   .destination-meta {
     justify-content: start;
