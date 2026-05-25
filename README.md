@@ -33,7 +33,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/space-tourism-multi-page-website-YJE1fOp1JY)
-- Live Site URL: [GitHub Pages](https://rahulpaul127.github.io/space-tourism-multipage-website/)
+- Live Site URL: [GitHub Pages](https://rahulpaul127.github.io/space-tourism-multi-page-website/)
 
 ## My process
 
